@@ -10,7 +10,7 @@ long int mod(long int a, long int b){
 }
 
 class train {
-    int trainLength, speed, trackLength, trainHead;
+    int trainLength, trackLength, trainHead;
     bool direction;
     int* trainArray;
     void initialize(int x);
@@ -19,11 +19,9 @@ class train {
     train(int trainLength, int trackLength);
     void move(int distance);
     void display();
-    void setSpeed(int speed);
     void setDirection(int direction);
     int getTrainLength();
     int getTrackLength();
-    int getSpeed();
     int getDirection();
 };
 
@@ -31,7 +29,6 @@ train :: train() {
     trainLength = 3;
     trainHead = 3;
     direction = 0;
-    speed = 1;
     trackLength = 16;
     initialize(trackLength);
     for (int i = 0; i < trainLength; i++){
@@ -45,7 +42,6 @@ train :: train(int x, int y) {
     trainLength = x;
     trainHead = x;
     direction = 0;
-    speed = 1;
     trackLength = y;
     initialize(trackLength);
     for (int i = 0; i < trainLength; i++){
@@ -70,7 +66,7 @@ void train::display(){
 }
 
 void train::move(int distance){
-    distance = mod(distance, trackLength);
+//    distance = mod(distance, trackLength);
     if (direction == 0){
         for (int i = trainHead; i < trainHead + distance; i++){
             trainArray[mod(i, trackLength)] = 1;
