@@ -1,19 +1,12 @@
 #include <cstdio>
 #include <stdexcept>
-using namespace std;
-
-long int mod(long int a, long int b){
-    long int c = a % b;
-    if (c < 0)
-        c = c + b;
-    return c;
-}
 
 class train {
     int trainLength, trackLength, trainHead;
     bool direction;
     int* trainArray;
     void initialize(int x);
+    long int mod(long int a, long int b);
   public:
     train();
     train(int trainLength, int trackLength);
@@ -38,7 +31,7 @@ train :: train() {
 
 train :: train(int x, int y) {
     if (x >= y)
-        throw invalid_argument("train must be longer than the track");
+        throw std::invalid_argument("train must be longer than the track");
     trainLength = x;
     trainHead = x;
     direction = 0;
@@ -53,6 +46,13 @@ void train::initialize(int x){
     trainArray = new int[x];
     for (int i = 0; i < x; i++)
         trainArray[i] = 0;
+}
+
+long int train::mod(long int a, long int b){
+    long int c = a % b;
+    if (c < 0)
+        c = c + b;
+    return c;
 }
 
 void train::display(){
