@@ -2,10 +2,11 @@
 #include <stdexcept>
 
 class train {
+  private:
     int trainLength, trackLength, trainHead;
     bool direction;
     int* trainArray;
-    void initialize(int x);
+    void initialize(int trackLength, int trainLength);
     long int mod(long int a, long int b);
   public:
     train();
@@ -23,10 +24,7 @@ train :: train() {
     trainHead = 3;
     direction = 0;
     trackLength = 16;
-    initialize(trackLength);
-    for (int i = 0; i < trainLength; i++){
-        trainArray[i] = 1;
-    }
+    initialize(trackLength, trainLength);
 }
 
 train :: train(int x, int y) {
@@ -36,16 +34,16 @@ train :: train(int x, int y) {
     trainHead = x;
     direction = 0;
     trackLength = y;
-    initialize(trackLength);
-    for (int i = 0; i < trainLength; i++){
-        trainArray[i] = 1;
-    }
+    initialize(trackLength, trainLength);
 }
 
-void train::initialize(int x){
+void train::initialize(int x,int y){
     trainArray = new int[x];
     for (int i = 0; i < x; i++)
         trainArray[i] = 0;
+    for (int i = 0; i < y; i++){
+        trainArray[i] = 1;
+    }
 }
 
 long int train::mod(long int a, long int b){
